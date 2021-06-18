@@ -1,0 +1,72 @@
+\section{程序亮点与不足}
+\subsection{亮点}
+\subsubsection{函数封装}
+除主函数外，通过以下23个函数实现全部功能，每个函数目标明确，易于阅读和修改。同时在函数调用关系图\ref{fig:code}中可以看到，一个函数被多个函数调用，说明代码复用性好。
+
+\lstset{language=C}
+\begin{lstlisting}
+void dataInit();
+void Menu_plot();
+void Menu();
+void GameInit();
+void ImportImage();
+void GamePlay();
+int is_connect(int x1, int y1, int x2, int y2,int is_draw);
+void state_upd();
+int is_in_col(int x1, int y1, int x2, int y2); 
+int is_in_row(int x1, int y1, int x2, int y2);
+int is_connect_one(int x1, int y1, int x2, int y2); 
+int is_connect_two(int x1, int y1, int x2, int y2); 
+int is_connect_three(int x1, int y1, int x2, int y2, int is_draw); 
+void clear();
+int is_satisfy_10(); 
+void RankInit();
+int is_win();
+void mode_choose();
+void setting();
+void setting_plot();
+void rank_plot();
+int is_connect_solvable();
+void auto_remove();
+\end{lstlisting}
+
+\subsubsection{程序保护}
+当提示次数和洗牌次数为0时，玩家再次点击相应按钮会提示次数用完，而不会出现负值情况，对程序进行保护，代码如下。
+\lstset{language=C}
+\begin{lstlisting}
+//鼠标点击提示区域
+else if  (x > 760 && x < 850 && y >245 && y < 295){
+    if (shuffle == 0) {
+        MessageBox(GetHWnd(), L"你的提示次数已经用完!", L"提示", 0);
+     }
+    else {
+        //进入正常的提示消除部分
+        //省略
+    }
+}
+\end{lstlisting}
+
+\subsubsection{图像刷新}
+很多样例程序采用在每次while循环中对全部图片进行刷新，导致出现闪屏的情况。这里为了避免这个情况，在GameInit中一次性显示图片，之后每次消除后只需要将对应清空的格点置白。但这样也给其他功能的实现带来麻烦，例如消去连接提示线(每次成功消去短暂停留的连接线)时，就需要额外的clear\_list记录需要消去的格子。
+
+\subsubsection{充值功能}
+充值提示功能原本是我找到提示对后没有break的BUG，但这个BUG被我改成了一个充值亮点。同时这种小游戏的充值也讽刺了当今的游戏环境。
+
+
+\subsection{不足}
+\subsubsection{边界处理}
+玩家无法对边界上的相同图片通过边界连线进行消除。这里的实现思路只需要将原MAP周围加上一圈空白格即可。但由于一开始编程时我没注意这点，且程序中对MAP采用了两种如下的索引方式，我尝试修改后没能正确实现。最后向谌老师征求意见，得到答复是这属于功能实现范畴，不属于编程问题，于是我就没对边界格点消除进行实现。
+
+\lstset{language=C}
+\begin{lstlisting}
+//1维索引
+for (int i = 0; i < max_col * max_row  ; i++) 
+    MAP[i] = rand() % (num_hero) + 1;
+//2维索引
+for (int i = 0; i < max_col; i++)
+    for (int j = 0; j < max_row; j++) 
+        putimage(start_x + i * box_width, start_y + j * box_width, &img[MAP[i + j * max_col]]);
+\end{lstlisting}
+
+\subsubsection{提示线绘制}
+提示线消除的代码集中在判断可连性处，但由于我只返回是否可连的01变量，因此具体实现复杂，无法复用，例如练练规则改成允许四段连接，程序就需要大改。具体来说一段连接和二段的提示线在is\_connect中绘制，三段连接提示线在is\_connect\_three中绘制，虽然实现了功能，但代码逻辑不清晰。

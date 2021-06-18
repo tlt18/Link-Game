@@ -1,0 +1,62 @@
+\documentclass{article}
+ 
+% ----------------------------------------------------------------
+% settings
+% ----------------------------------------------------------------
+\input{settings/settings.tex}
+\input{settings/newCmd.tex} 
+\graphicspath{{./fig/}}
+
+
+% ----------------------------------------------------------------
+% body part 
+% ----------------------------------------------------------------
+\begin{document}
+
+% ------------------------------------------------
+% cover 
+% ------------------------------------------------
+
+\thispagestyle{empty}
+\begin{center}
+    ~\\[4cm]
+    \rule{\linewidth}{0.5mm} \\[6mm]
+    {\erhao{程序设计基础大作业}  \\  \textbf{{\erhao{王者荣耀连连看}}}  \\[6mm]}
+    \rule{\linewidth}{0.5mm} \\[8cm]
+
+\sanhao{
+    \begin{tabular}{ccc}
+        \textbf{姓名} &  & 陶乐天 \\
+        \textbf{班级} &  & 汽83 \\
+        \textbf{学号} &  & 2018010771 \\
+        \textbf{日期} &  & \today  
+    \end{tabular}        
+}
+\end{center}
+
+\clearpage
+\phantom{s}
+
+
+% ------------------------------------------------
+% menu
+% ------------------------------------------------
+
+\tableofcontents
+\newpage
+
+
+% ------------------------------------------------
+% sections 
+% ------------------------------------------------
+
+\include{body/section1} 
+\include{body/section2} 
+\include{body/section3} 
+\include{body/section4} 
+\include{body/section5} 
+
+
+
+
+\end{document}

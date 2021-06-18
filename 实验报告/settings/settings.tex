@@ -1,0 +1,109 @@
+% Filename: strcture.tex
+% Description: use to set structure of main.tex
+% Others: none
+% History: 
+%     21:23,11-19-2019:finish file 
+% 
+% By Ethan Lyu at 21:23,11-19-2019
+% CopyRights Protected
+
+% ----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+% ----------------------------------------------------------------------------------------
+
+% page layout 
+\usepackage[margin=1in]{geometry}   % Required for adjusting page dimensions
+\usepackage{setspace}               %set space between lines
+\usepackage[strict]{changepage}     % set ? 
+\usepackage{indentfirst}            % set indent of first line
+\usepackage{fancyhdr}
+
+% font 
+\usepackage{ctex}           % for chinese 
+\usepackage[T1]{fontenc}    % Output font encoding for international characters
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+
+
+% enum 
+\usepackage{enumitem}   % Required for customising lists
+\setlist{noitemsep}     % Remove spacing between bullet/numbered list elements
+
+% color 
+\usepackage{xcolor}     % to define color 
+
+% image
+\usepackage{graphicx}   % insert figure 
+\usepackage{float}      % float image 
+\usepackage{subfigure}  % subfigure
+\usepackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black]{hyperref} %for bookmark 
+\usepackage{wrapfig}    % for img 
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{color}	 	% colored image
+\usepackage{epsfig}		% eps figure
+
+% table 
+\usepackage{booktabs}   % beautify table 
+\usepackage{multirow}   % provide mul row 
+\usepackage{multicol}   % provide mul col 
+
+% math 
+\usepackage{amsmath,amsfonts,amsthm} % Math packages for equations
+\usepackage{amssymb}    % for math symbol 
+\usepackage{siunitx}    % for unit display 
+
+% code 
+\usepackage{listings}   % code
+\usepackage{verbatim}   % for comment 
+
+
+% ----------------------------------------------------------------------------------------
+%	GLOBAL SETTINGS 
+% ----------------------------------------------------------------------------------------
+
+% layout 
+\geometry{
+	top=1cm, % Top margin
+	bottom=1.5cm, % Bottom margin
+	left=2cm, % Left margin
+	right=2cm, % Right margin
+	includehead, % Include space for a header
+	includefoot, % Include space for a footer
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+\setlength{\columnsep}{7mm} % Column separation width
+\setlength{\parindent}{2em}	% indent 
+
+% font 
+\setmainfont{Times New Roman}	% english 
+\usepackage{xeCJK} 		% chinese 
+\setCJKmainfont[BoldFont=SimHei]{SimSun}
+\setCJKmonofont{NSimSun}     % 设置缺省中文字体
+
+% color  
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}  %totally used in code display
+\definecolor{mygreen}{rgb}{0,0.6,0}
+
+% code 
+\lstset{                
+    numbers=left,                                   
+    % where to put the line-numbers; possible values are (none, left, right)
+    numberstyle=  \color{mygray}, 
+    % the style that is used for the line-numbers
+    keywordstyle= \color{ blue!70},
+    basicstyle=\footnotesize,        
+    % the size of the fonts that are used for the code
+    commentstyle=\color{mygreen},    
+    % comment style
+    frame=single,	                   
+    % adds a frame around the code, you can use frame=shadowboxs
+    % with a rulesepcolor= \color{ red!20!green!20!blue!20} ,
+    escapeinside=``, % 英文分号中可写入中文
+    xleftmargin=4em,xrightmargin=2em, aboveskip=1em,
+    framexleftmargin=2em
+} 
+
+
+
+
